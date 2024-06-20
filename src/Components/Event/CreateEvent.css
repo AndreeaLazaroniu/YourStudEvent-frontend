@@ -1,0 +1,80 @@
+/* Container styling */
+.CreateEventMain {
+    padding-top: 70px; /* Equal to header height */
+    padding-bottom: 40px; /* Equal to footer height */
+    flex-grow: 1; /* Makes sure the content takes the available space */
+    display: flex; /* Makes the .main a flex container */
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+}
+
+.CreateEventMain .headingCreateEvent{
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.CreateEventMain .container {
+    max-width: 600px; /* Set a max-width for the form container */
+    margin: auto; /* Center the container */
+    padding: 20px; /* Padding around the content */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow around the container */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #ffffff; /* White background */
+}
+
+/* Form group styling */
+.CreateEventMain .form-group {
+    margin-bottom: 0.5rem; /* Space between form groups */
+}
+
+/* Labels */
+.CreateEventMain .form-label {
+    font-size: 0.9rem; /* Font size for labels */
+    color: #333; /* Dark grey color for text */
+    margin-bottom: 0.25rem; /* Space below the label */
+    display: block; /* Ensure the label is block level */
+}
+
+/* Inputs */
+.CreateEventMain .form-control {
+    height: 38px; /* Standard height for inputs */
+    padding: 6px 12px; /* Padding inside inputs */
+    font-size: 0.9rem; /* Font size for input text */
+    line-height: 1.6; /* Line height for input text */
+    border: 1px solid #ccc; /* Subtle border for inputs */
+    border-radius: 4px; /* Rounded corners for inputs */
+    display: block; /* Ensure inputs are block level */
+    width: 100%; /* Full width within form group */
+}
+
+/* File input specific styling */
+.CreateEventMain .form-control[type="file"] {
+    height: auto; /* Adjust height for file inputs */
+    padding: 6px; /* Adjust padding for file inputs */
+}
+
+/*!* Button styling *!*/
+/*.CreateEventMain .button, .btn-primary {*/
+/*    background-color: #0056b3; !* Primary button color *!*/
+/*    color: white; !* Text color for primary button *!*/
+/*    border: none; !* No border for a cleaner look *!*/
+/*    padding: 10px 15px; !* Padding for button *!*/
+/*    font-size: 1rem; !* Font size for button text *!*/
+/*    border-radius: 4px; !* Rounded corners for the button *!*/
+/*    cursor: pointer; !* Cursor to pointer to indicate it's clickable *!*/
+/*    display: inline-block; !* Align properly without taking full width *!*/
+/*    transition: background-color 0.3s; !* Smooth transition for hover effect *!*/
+/*}*/
+
+/*.CreateEventMain .btn-primary:hover {*/
+/*    background-color: #004095; !* Darker shade on hover *!*/
+/*}*/
+
+/* Handling responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px; /* Less padding on smaller screens */
+        margin: 20px; /* More margin on smaller screens */
+    }
+}

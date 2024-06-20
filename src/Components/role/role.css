@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+24&family=Noto+Sans+JP:wght@100..900&family=Sedan:ital@0;1&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #edf2f4;
+}
+
+code {
+    font-family: 'Sedan', sans-serif;
+}
+
+.mainRole {
+    padding-top: 70px; /* Equal to header height */
+    padding-bottom: 40px; /* Equal to footer height */
+    flex-grow: 1; /* Makes sure the content takes the available space */
+    display: flex; /* Makes the .main a flex container */
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+}
+
+/* Ensure the .role container is not too tall for smaller viewports */
+.role {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: auto; /* Adds scroll to the .role if content overflows */
+    margin: auto;
+    opacity: 1;
+}
+
+.role-heading {
+    text-align: center;
+    color: #282828; /* Dark grey color for text */
+    font-size: 36px; /* Larger font size for headline */
+    margin-bottom: 30px; /* More space below the headline */
+}
+
+.role-buttons {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    flex-wrap: wrap; /* Wrap buttons to the next line if they don't fit */
+    opacity: 1;
+}
+
+.student-button, .organizer-button {
+    display: flex;
+    flex-direction: column; /* Organize content in a column inside the button */
+    align-items: center; /* Center items inside the button */
+    margin: 20px;
+    padding: 70px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff; /* Blue background */
+    color: #000000;
+    font-size: 22px; /* Larger font size for button text */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    text-align: center; /* Center the text inside the button */
+}
+
+.student-button:hover {
+    background-color: #EDF2F4; /* Darker blue on hover */
+}
+
+.organizer-button:hover {
+    background-color: #EDF2F4; /* Darker blue on hover */
+}
+
+.imgRole {
+    width:150px; /* Larger image size */
+    height: 150px;
+    margin-bottom: 10px; /* Margin below the image */
+}

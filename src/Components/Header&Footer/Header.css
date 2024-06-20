@@ -1,0 +1,77 @@
+/* Header.css */
+.Header {
+    position: fixed; /* Fix position to the top of the viewport */
+    width: 100%; /* Ensure it spans the full width of the viewport */
+    height: 70px; /* Set the height of the header */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    background-color: #fff; /* Set a background color */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility */
+    z-index: 1000; /* Make sure it stays on top of other content */
+    opacity: 0.9;
+}
+
+.nav {
+    list-style: none; /* Remove bullet points */
+    margin: 0;
+    padding: 10px 20px; /* Add padding for aesthetic spacing */
+    display: flex; /* Align items in a row */
+    justify-content: space-around; /* Distribute space around each link */
+    align-items: center; /* Align items vertically */
+}
+
+.nav .left{
+    display: flex; /* Align items in a row */
+    align-items: center; /* Align items vertically */
+}
+
+.nav .right {
+    display: flex; /* Align items in a row */
+    align-items: center; /* Align items vertically */
+}
+
+.nav .center {
+    display: flex; /* Align items in a row */
+    align-items: center; /* Align items vertically */
+}
+
+.nav .imgHeader {
+    width: 100px; /* Set the width of the logo */
+    height: 35px; /* Set the height of the logo */
+}
+
+.nav li {
+    padding: 10px; /* Padding for clickable area */
+}
+
+.nav li:hover {
+    text-decoration: underline;
+}
+
+.nav a {
+    text-decoration: none; /* Remove underline from links */
+    color: black; /* Set the color of the text for the links */
+    font-weight: bold; /* Make the font bold */
+}
+
+.nav .headerButton {
+    width: 100px;
+    height: 30px;
+    background: #edf2f4;
+    margin-right: 20px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #0f2032;
+    font-weight: 700;
+    transition: background 0.3s;
+    align-items: center;
+}
+
+.nav .headerButton:hover {
+    background: #3498db;
+    color: #edf2f4;
+}

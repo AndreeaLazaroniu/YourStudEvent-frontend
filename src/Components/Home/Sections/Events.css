@@ -1,0 +1,61 @@
+.mainEventsHome{
+    font-family: 'Noto Sans JP', sans-serif;
+    padding-top: 40px; /* Equal to header height */
+    padding-bottom: 60px; /* Equal to footer height */
+    flex-grow: 1; /* Makes sure the content takes the available space */
+    display: flex; /* Makes the .main a flex container */
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+    background-color: #f8f8f6;
+}
+
+.homeEventsTitle{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #333;
+
+}
+
+.eventsHome-container {
+    padding: 20px 0;
+    background-color: #f8f8f6; /* White background for clarity */
+    width: 95% ;
+    border-bottom: 2px solid #2e2525;
+}
+
+.homeEventsCard {
+    margin-bottom: 40px;
+    box-shadow: 0 4px 8px rgb(159, 165, 104); /* Adds subtle shadows to cards */
+}
+
+.card-img-top {
+    height: 200px; /* Fixed image height in cards */
+    object-fit: cover; /* Ensures images fit well */
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.homeEventsCard:hover {
+    transform: scale(1.05); /* Increase the size of the card */
+    transition: transform .2s; /* Smooth transition */
+}
+
+.seeMore-button {
+    font-size: 16px;
+    background-color: #a0a669; /* Blue background for the button */
+    color: #000000; /* White text color */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding inside the button */
+    cursor: pointer; /* Cursor indicates the button is clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    border-radius: 40px;
+}
+
+.seeMore-button:hover{
+    background-color: #575c25; /* Darker shade of blue for hover effect */
+}

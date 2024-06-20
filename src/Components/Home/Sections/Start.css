@@ -1,0 +1,65 @@
+.mainStart {
+    /*background-color: #f4f4f4; !* Light grey background, adjust the color as needed *!*/
+    background-image: url("../../../Assets/start.png");
+    background-size: cover; /* Cover the entire area */
+    height: 90vh; /* Full viewport height */
+    display: flex;
+    align-items: flex-start; /* Center content vertically */
+}
+
+.startContainer {
+    background-color: rgba(255, 255, 255, 0); /* Semi-transparent white background */
+    padding-top: 300px;
+    padding-left: 100px;
+    text-align: left; /* Align text to the left */
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.startContainer .startTitle {
+    font-size: 60px; /* Large font size for the header */
+    font-weight: 700; /* Bold font weight */
+    color: #000000; /* Dark grey color for the text */
+    margin-bottom: 20px; /* Space below the header */
+    animation: fadeIn 4s; /* Fade in animation for the header */
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    50% { border-color: transparent; }
+}
+
+.startContainer .startText {
+    font-size: 18px; /* Adequate font size for readability */
+    color: #666; /* Medium grey color for the paragraph */
+    line-height: 1.5; /* Line height for better readability */
+    margin-bottom: 20px; /* Space below the paragraph */
+    overflow: hidden; /* Ensures the content is only shown within the text area */
+    border-right: .15em solid #000; /* The typewriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    animation:
+            typing 3.5s steps(40) 1s,
+            blink-caret .75s step-end infinite;
+}
+
+.goToEventsButton {
+    font-size: 16px;
+    background-color: #a0a669; /* Blue background for the button */
+    color: white; /* White text color */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding inside the button */
+    cursor: pointer; /* Cursor indicates the button is clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    border-radius: 40px;
+}
+
+.goToEventsButton:hover {
+    background-color: #575c25; /* Darker shade of blue for hover effect */
+}

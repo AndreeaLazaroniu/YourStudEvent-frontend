@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+24&family=Noto+Sans+JP:wght@100..900&family=Sedan:ital@0;1&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+code {
+    font-family: 'Sedan', sans-serif;
+}
+
+.mainReg {
+    font-family: 'Noto Sans JP', sans-serif;
+    padding-top: 90px; /* Equal to header height */
+    padding-bottom: 90px; /* Equal to footer height */
+    flex-grow: 1; /* Makes sure the content takes the available space */
+    display: flex; /* Makes the .main a flex container */
+    justify-content: normal; /* Centers content vertically */
+    padding-left: 600px; /*!* Equal to footer height *!*/
+    align-items: center; /* Centers content horizontally */
+    background-color: #f4fafb;
+}
+
+.studentRegister {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    text-align: center;
+    padding-left: 100px;
+}
+
+.regHeading-col {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.studentRegister-heading {
+    font-size: 2em;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 20px;
+    margin-right: 80px;
+    text-align: center;
+}
+
+.studentRegister-form {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.studentRegister-form input,textarea{
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.studentRegister-form input[type="submit"],.studentRegister-form button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.studentRegister-form input[type="submit"]:hover,.studentRegister-form button:hover {
+    background-color: #004494;
+}
+
+.studentRegister .error {
+    color: red;
+}

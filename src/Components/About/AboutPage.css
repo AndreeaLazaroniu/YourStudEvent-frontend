@@ -1,0 +1,66 @@
+.aboutPageMain{
+    font-family: 'Noto Sans JP', sans-serif;
+    padding-top: 20px; /* Equal to header height */
+    padding-bottom: 60px; /* Equal to footer height */
+    flex-grow: 1; /* Makes sure the content takes the available space */
+    display: flex; /* Makes the .main a flex container */
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+    background-color: #f8f8f6;
+}
+
+.aboutPageContainer {
+    margin-top: 80px;
+    max-width: 90%;
+    max-height: 100%;
+    background-color: #f9f9f9; /* Light background for the container */
+    padding-bottom: 20px; /* Bottom padding */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+.stylish-title {
+    background: linear-gradient(to right, #133709 0%, #6f9534 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    overflow: hidden; /* Ensures the content is only shown within the title area */
+    white-space: nowrap; /* Keeps the content on a single line */
+    letter-spacing: .15em; /* Adjust as needed */
+}
+
+/* Carousel styling */
+.carousel {
+    margin-top: 20px;
+    box-shadow: 0 6px 12px rgba(68, 80, 61, 0.29); /* Shadow for carousel */
+}
+
+.carousel-item img {
+    height: 300px; /* Fixed height for images */
+    object-fit: cover; /* Ensure images cover the area well */
+}
+
+/* Cards styling */
+.card-hover:hover {
+    transform: scale(1.03); /* Slight scale on hover for interaction */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border: none; /* Remove border */
+}
+
+.card-title {
+    color: #333; /* Dark grey color for card titles */
+}
+
+.card-text {
+    color: #555; /* Slightly lighter grey for text to reduce intensity */
+}
+
+/* Media queries for responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: auto; /* Auto height for smaller screens */
+    }
+}

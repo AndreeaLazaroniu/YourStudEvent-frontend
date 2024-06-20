@@ -1,0 +1,31 @@
+.testimonials-container {
+    padding: 40px 0;
+    background-color: #f8f8f6; /* Light grey background for testimonials */
+    align-items: center;
+}
+
+.testimonialsTitle {
+    text-align: center; /* Center the title */
+    margin-top: 10px; /* Space above the title */
+    font-size: 2.5rem; /* Large font size for the title */
+    font-weight: 600; /* Bold font weight */
+    margin-bottom: 20px; /* Space below the title */
+    color: #333; /* Dark text color */
+}
+
+.testimonialsBox {
+    margin-left: 250px;
+    padding: 20px 0; /* Padding around the testimonials */
+    background-color: #f8f8f6; /* Light grey background for testimonials */
+    width: 70%; /* 70% width for the testimonials box */
+    margin-bottom: 50px; /* Space below the testimonials box */
+}
+
+.accordion-button {
+    background-color: #f8f8f6; /* White background for accordion headers */
+    color: #333; /* Dark text for readability */
+}
+
+.accordion-body {
+    font-style: italic; /* Italicize testimonials */
+}
