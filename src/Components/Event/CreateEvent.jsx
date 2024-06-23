@@ -3,7 +3,7 @@ import axios from "axios";
 import { Form, Button, Container } from 'react-bootstrap';
 import './CreateEvent.css';
 import { useNavigate} from "react-router-dom";
-import bkg from "../../Assets/bgdGif.gif";
+import bkg from "../../Assets/bgdGif3.gif";
 import {useAuth} from "../../AuthContext";
 
 export const CreateEvent = () => {

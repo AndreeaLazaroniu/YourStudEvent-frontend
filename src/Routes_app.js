@@ -14,6 +14,8 @@ import {AboutPage} from "./Components/About/AboutPage";
 import {EventsPage} from "./Components/Events/EventsPage";
 import {EventDetailPage} from "./Components/Events/EventDetailPage";
 import {ResetPassword} from "./Components/Password/ResetPassword"
+import {MyEvents} from "./Components/OrganizerEvents/MyEvents";
+import {EventDetailsOrg} from "./Components/Events/EventDetailsOrg";
 
 export const Routes_app = () => {
     const auth = useAuth();
@@ -34,6 +36,8 @@ export const Routes_app = () => {
                     <Route path="/register/organizerRegister" element={<OrganizerRegister />} />
                     <Route path="/register/studentRegister" element={<StudentRegister />} />
                     <Route path="/forgotpassword" element={<ResetPassword />} />
+                    <Route path="/myEvents" element={< MyEvents/>} />
+                    <Route path="/myEvents/:Id" element={< EventDetailsOrg />}></Route>
                 </Routes>
         </Layout>
     );

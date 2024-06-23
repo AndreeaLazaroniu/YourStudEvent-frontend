@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from "axios";
 
 const AuthContext = createContext(null);
 
@@ -8,15 +9,39 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            setUser({ token });
-        }
+        const fetchUserDetails = async () => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                try {
+                    const response = await axios.get("https://localhost:44317/api/account/GetOneUser", {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    setUser({ token, ...response.data }); // Assuming response.data contains the user details
+                } catch (error) {
+                    console.log("Failed to fetch user details:", error);
+                    // Handle errors or clear token if necessary
+                }
+            }
+        };
+
+        fetchUserDetails();
     }, []);
 
-    const login = (token) => {
+    const login = async (token) => {
         localStorage.setItem("token", token);
-        setUser({ token });
+        try {
+            const response = await axios.get("https://localhost:44317/api/account/GetOneUser", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setUser({ token, ...response.data }); // Set user details along with token
+        } catch (error) {
+            console.log("Failed to fetch user details:", error);
+            // Optionally handle login failure or remove token
+        }
     };
 
     const logout = () => {

@@ -28,6 +28,10 @@ export const Events = () => {
     const handleSeeMore = () => {
         navigate('/events'); // Navigate to the events page or a specific URL
     };
+    const getFirstFiftyWords = (text) => {
+        return text.split(/\s+/).slice(0, 5).join(" ") + "...";
+    };
+
 
     return (
         <body className="mainEventsHome">
@@ -40,7 +44,7 @@ export const Events = () => {
                                 <Card.Img variant="top" src={imagePaths[Id]} />
                                 <Card.Body>
                                     <Card.Title>{event.title}</Card.Title>
-                                    <Card.Text>{event.description}</Card.Text>
+                                    <Card.Text>{getFirstFiftyWords(event.description)}</Card.Text>
                                     <Card.Text>{event.price}</Card.Text>
                                 </Card.Body>
                             </Card>

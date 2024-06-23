@@ -16,18 +16,28 @@ export const Header = () => {
         navigate('/');
     };
 
-    // const handleProfile = () => {
-    //     const roleResponse = await axios.get(`https://localhost:44317/api/account/getRole/${UserName}`);
-    //
-    //     setRole(roleResponse.data);
-    //
-    //     // Navigate based on the role
-    //     if (roleResponse.data === 'Student') {
-    //         navigate('/myProfileStud');
-    //     } else if (roleResponse.data === 'Organizer') {
-    //         navigate('/myProfile');
-    //     }
-    // }
+    const handleProfile = async () => {
+        if (!auth.user || !auth.user.id) {
+            console.error("No user information available for role check.");
+            navigate('/login');
+            return;
+        }
+
+        const roleResponse = await axios.get(`https://localhost:44317/api/account/getRole`, {
+            headers: {
+                Authorization: `Bearer ${auth.user.token}`
+            }
+        });
+
+        setRole(roleResponse.data);
+
+        // Navigate based on the role
+        if (roleResponse.data === 'Student') {
+            navigate('/myProfileStud');
+        } else if (roleResponse.data === 'Organizer') {
+            navigate('/myProfile');
+        }
+    }
 
     return (
         <div className="Header">
@@ -41,7 +51,7 @@ export const Header = () => {
                 <div className="right">
                     {auth.user ? (
                         <>
-                            <button className="headerButton" onClick={() => navigate('../myProfileStud')}>MyProfile</button>
+                            <button className="headerButton" onClick={handleProfile}>MyProfile</button>
                             <button className="headerButton" onClick={handleLogout}>Logout</button>
                         </>
                     ) : (

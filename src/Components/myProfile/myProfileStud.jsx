@@ -2,10 +2,10 @@
 import React, {useState, useEffect} from 'react';
 import {Button, Form, Container, Row, Col} from "react-bootstrap";
 import axios from "axios";
-import './myProfile.css';
-import myPrf from "../../Assets/myPrf.gif";
+import './myProfileStud.css';
 import { useNavigate} from "react-router-dom";
 import {useAuth} from "../../AuthContext";
+import {Box, Grid} from "@mui/material";
 
 export const MyProfileStud = () => {
     const [user, setUser] = useState({});
@@ -69,112 +69,107 @@ export const MyProfileStud = () => {
     };
 
     return (
-        <div className="profile-container" style={
-            {backgroundImage: `url(${myPrf})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                height: "100vh",
-                width: "98vw"
-            }
-        }>
-            <Row className="rowElementProfile">
-                <Col md={6}>
-                    <Form>
-                        <Form.Group className="formGroupProfile" controlId="formGroupName">
-                            <Form.Label className="text-inputProfile">Username</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter UserName"
-                                name="name"
-                                value={user.userName || ''}
-                                onChange={handleChange}
-                                readOnly={!editMode}
-                            />
-                        </Form.Group>
+        <main className={'myProfilePageMain'}>
+            <Box className = {"background-image-part"}></Box>
+            <div className="profile-container">
+                <Box className="rowElementProfile">
+                    <Grid item sm={6} md={4}>
+                        <Form>
+                            <Form.Group className="formGroupProfile" controlId="formGroupName">
+                                <Form.Label className="text-inputProfile" style={{ fontWeight: 'bold' }}>Username</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter UserName"
+                                    name="name"
+                                    value={user.userName || ''}
+                                    onChange={handleChange}
+                                    readOnly={!editMode}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="formGroup" controlId="formGroupEmail">
-                            <Form.Label className="text-inputProfile">Email</Form.Label>
-                            <Form.Control
-                                type="email"
-                                placeholder="Enter email"
-                                name="email"
-                                value={user.email || ''}
-                                onChange={handleChange}
-                                readOnly={!editMode}
-                            />
-                        </Form.Group>
+                            <Form.Group className="formGroup" controlId="formGroupEmail">
+                                <Form.Label className="text-inputProfile" style={{ fontWeight: 'bold' }}>Email</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    placeholder="Enter email"
+                                    name="email"
+                                    value={user.email || ''}
+                                    onChange={handleChange}
+                                    readOnly={!editMode}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="formGroup" controlId="formGroupName">
-                            <Form.Label className="text-inputProfile">First Name</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter first name"
-                                name="orgName"
-                                value={user.firstName || ''}
-                                onChange={handleChange}
-                                readOnly={!editMode}
-                            />
-                        </Form.Group>
+                            <Form.Group className="formGroup" controlId="formGroupName">
+                                <Form.Label className="text-inputProfile" style={{ fontWeight: 'bold' }}>First Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter first name"
+                                    name="orgName"
+                                    value={user.firstName || ''}
+                                    onChange={handleChange}
+                                    readOnly={!editMode}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="formGroup" controlId="formGroupName">
-                            <Form.Label className="text-inputProfile">Last Name</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter last name"
-                                name="orgName"
-                                value={user.lastName || ''}
-                                onChange={handleChange}
-                                readOnly={!editMode}
-                            />
-                        </Form.Group>
+                            <Form.Group className="formGroup" controlId="formGroupName">
+                                <Form.Label className="text-inputProfile" style={{ fontWeight: 'bold' }}>Last Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter last name"
+                                    name="orgName"
+                                    value={user.lastName || ''}
+                                    onChange={handleChange}
+                                    readOnly={!editMode}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="formGroup" controlId="formGroupName">
-                            <Form.Label className="text-inputProfile">University</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter University"
-                                name="description"
-                                value={user.university || ''}
-                                onChange={handleChange}
-                                readOnly={!editMode}
-                            />
-                        </Form.Group>
+                            <Form.Group className="formGroup" controlId="formGroupName">
+                                <Form.Label className="text-inputProfile" style={{ fontWeight: 'bold' }}>University</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter University"
+                                    name="description"
+                                    value={user.university || ''}
+                                    onChange={handleChange}
+                                    readOnly={!editMode}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="formGroup" controlId="formGroupName">
-                            <Form.Label className="text-inputProfile">Phone Number</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter phone number"
-                                name="phoneNumber"
-                                value={user.phoneNumber || ''}
-                                onChange={handleChange}
-                                readOnly={!editMode}
-                            />
-                        </Form.Group>
+                            <Form.Group className="formGroup" controlId="formGroupName">
+                                <Form.Label className="text-inputProfile" style={{ fontWeight: 'bold' }}>Phone Number</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter phone number"
+                                    name="phoneNumber"
+                                    value={user.phoneNumber || ''}
+                                    onChange={handleChange}
+                                    readOnly={!editMode}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="formGroup" controlId="formGroupName">
-                            <Form.Label className="text-inputProfile">Address</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter address"
-                                name="address"
-                                value={user.address || ''}
-                                onChange={handleChange}
-                                readOnly={!editMode}
-                            />
-                        </Form.Group>
+                            <Form.Group className="formGroup" controlId="formGroupName">
+                                <Form.Label className="text-inputProfile" style={{ fontWeight: 'bold' }}>Address</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter address"
+                                    name="address"
+                                    value={user.address || ''}
+                                    onChange={handleChange}
+                                    readOnly={!editMode}
+                                />
+                            </Form.Group>
 
-                        {!editMode ? (
-                            <Button className="button-profile" variant="primary" onClick={handleEdit}>Edit</Button>
-                        ) : (
-                            <Button className="button-profile" variant="success" onClick={handleSave}>Save</Button>
-                        )}
-                        <Button className="button-profile" variant="danger" onClick={handleDelete} style={{ marginLeft: '10px' }}>Delete Account</Button>
-                    </Form>
-                </Col>
-            </Row>
-        </div>
+                            {!editMode ? (
+                                <Button className="button-profile" variant="primary" onClick={handleEdit}>Edit</Button>
+                            ) : (
+                                <Button className="button-profile" variant="success" onClick={handleSave}>Save</Button>
+                            )}
+                            <Button className="button-profile" variant="danger" onClick={handleDelete} style={{ marginLeft: '10px' }}>Delete Account</Button>
+                        </Form>
+                    </Grid>
+                </Box>
+            </div>
+        </main>
     );
 
 };

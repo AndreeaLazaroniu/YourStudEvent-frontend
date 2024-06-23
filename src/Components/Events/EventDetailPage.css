@@ -3,6 +3,14 @@
     background-color: #f5f5f5; /* Light grey background */
 }
 
+.EventDetailContainer {
+    padding: 20px;
+    background-color: white; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow */
+
+}
+
 .EventDetailContainer img {
     margin-bottom: 20px; /* Adds space below the image */
 }

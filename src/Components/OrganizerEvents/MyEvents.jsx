@@ -1,20 +1,17 @@
 import {Container, Row, Col, Card, Form, InputGroup, Button, Modal} from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
-import './EventsPage.css';
+import './MyEvents.css';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../AuthContext";
-import { format } from 'date-fns';
+import {Box} from "@mui/material";
+import {format} from "date-fns";
 
-export const EventsPage = () => {
+export const MyEvents = () => {
     const [events, setEvents] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
-    const [isAssigned, setIsAssigned] = useState(false);
-    const [sortOrder, setSortOrder] = useState('');
     const navigate = useNavigate();
     const auth = useAuth();
 
@@ -22,9 +19,9 @@ export const EventsPage = () => {
         const fetchEventsAndImages = async () => {
             try {
                 // Fetch events
-                const eventResponse = await axios.get('https://localhost:44317/api/Events/GetEvents', {
+                const eventResponse = await axios.get('https://localhost:44317/api/Events/GetEventsByOrg', {
                     headers: {
-                        Authorization: `Bearer ${auth.user}`
+                        Authorization: `Bearer ${auth.user.token}`
                     }
                 });
                 const eventsData = eventResponse.data;
@@ -34,7 +31,7 @@ export const EventsPage = () => {
                     try {
                         const imageResponse = await axios.get(`https://localhost:44317/api/content/getObjFile/${event.imageId}`, {
                             headers: {
-                                Authorization: `Bearer ${auth.user}`
+                                Authorization: `Bearer ${auth.user.token}`
                             }
                         });
                         return {
@@ -58,32 +55,15 @@ export const EventsPage = () => {
 
         fetchEventsAndImages();
 
-        // Fetch categories
-        axios.get('https://localhost:44317/api/Categories/GetCategories', {
-            headers: {
-                Authorization: `Bearer ${auth.user}`
-            }
-        })
-            .then(response => setCategories(response.data))
-            .catch(error => console.error('Error fetching categories:', error));
     }, [auth.user]);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
-    const handleCategoryChange = (event) => {
-        setSelectedCategory(event.target.value);
-    };
-
     const handleCloseModal = () => {
         setShowModal(false);
     };
-
-    const handleAssignToEvent = () => {
-        alert("You are assigned");
-        setIsAssigned(true);
-    }
 
     const handleCardClick = (event) => {
         if (event.eventId) {
@@ -94,47 +74,16 @@ export const EventsPage = () => {
         }
     };
 
-    const filteredEvents = events.filter((event) =>
-        event.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (selectedCategory === '' || event.catId.toString() === selectedCategory)
-    );
-
     const getFirstFiftyWords = (text) => {
         return text.split(/\s+/).slice(0, 5).join(" ") + "...";
     };
 
-    const sortEvents = (events) => {
-        switch (sortOrder) {
-            case 'name':
-                return [...events].sort((a, b) => a.title.localeCompare(b.title));
-            case 'date':
-                return [...events].sort((a, b) => new Date(a.date) - new Date(b.date));
-            case 'price':
-                return [...events].sort((a, b) => {
-                    // Convert price string to a number, treat 'free' as 0 or another appropriate value
-                    const getPriceValue = (price) => {
-                        if (price.toLowerCase() === 'free') {
-                            return 0;  // Or another default value that makes sense for your application
-                        }
-                        return parseFloat(price.replace(/\D/g, '')); // Remove non-numeric characters and parse
-                    };
-
-                    let priceA = getPriceValue(a.price);
-                    let priceB = getPriceValue(b.price);
-                    return priceA - priceB;
-                });
-            default:
-                return events;
-        }
-    };
-
-    const sortedAndFilteredEvents = sortEvents(filteredEvents);
-
     return (
         <main className="MainEventPage">
+            <Box className = {"background-image"}></Box>
             <Container className="eventsPageContainer">
                 <Row className="mb-3">
-                    <Col md={8}>
+                    <Col md={{ span: 8, offset: 2 }}>
                         <InputGroup>
                             <Form.Control
                                 type="text"
@@ -144,33 +93,17 @@ export const EventsPage = () => {
                             />
                         </InputGroup>
                     </Col>
-                    <Col md={4}>
-                        <h4>Filter by Category</h4>
-                        <Form.Select onChange={handleCategoryChange}>
-                            <option value="">Select category</option>
-                            {categories.map((category, index) => (
-                                <option key={index} value={category.catId}>{category.name}</option>
-                            ))}
-                        </Form.Select>
-                        <h4>Sort Events</h4>
-                        <Form.Select onChange={(e) => setSortOrder(e.target.value)}>
-                            <option value="">Sort by...</option>
-                            <option value="name">Name</option>
-                            <option value="date">Date</option>
-                            <option value="price">Price</option>
-                        </Form.Select>
-                    </Col>
                 </Row>
                 <Row xs={1} md={3} className="g-4">
-                    {sortedAndFilteredEvents.map((event) => (
+                    {events.filter(event => event.title.toLowerCase().includes(searchTerm.toLowerCase())).map((event) => (
                         <Col key={event.id}>
                             <Card className="eventPageCard" onClick={() => handleCardClick(event)}>
                                 <Card.Img variant="top" src={event.imageUrl} />
-                                <Card.Body style={{ backgroundColor: '#f0f5e9' }}>
+                                <Card.Body>
                                     <Card.Title>{event.title}</Card.Title>
                                     <Card.Text>{getFirstFiftyWords(event.description)}</Card.Text>
                                     <Card.Text>{event.price}</Card.Text>
-                                    <Card.Text>{event.date}</Card.Text>
+                                    <Card.Text>{format(new Date(event.date), 'yyyy-MM-dd')}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -189,7 +122,7 @@ export const EventsPage = () => {
                         <Button variant="secondary" onClick={handleCloseModal}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={() => navigate(`/event/${selectedEvent?.eventId}`)}>
+                        <Button variant="primary" onClick={() => navigate(`/myEvents/${selectedEvent?.eventId}`)}>
                             More Info
                         </Button>
                     </Modal.Footer>
@@ -199,4 +132,4 @@ export const EventsPage = () => {
     );
 };
 
-export default EventsPage;
+export default MyEvents;
