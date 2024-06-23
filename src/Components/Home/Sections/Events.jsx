@@ -10,13 +10,13 @@ export const Events = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('https://andreea.ligaac.ro:8080/api/Events/GetEvents')
+        axios.get('https://andreea.ligaac.ro/api/Events/GetEvents')
             .then(response => {
                 const data = response.data.slice(0, 6); // Limit the events to 6
                 setEvents(data);
 
                 const fetchImagePaths = data.map(event =>
-                    axios.get(`https://andreea.ligaac.ro:8080/api/content/getFile/${event.imageId}`)
+                    axios.get(`https://andreea.ligaac.ro/api/content/getFile/${event.imageId}`)
                         .then(response => response.data)
                 );
                 return Promise.all(fetchImagePaths);
