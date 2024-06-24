@@ -1,32 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import {useAuth} from "../../AuthContext";
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import {Box} from "@mui/material";
-import {format} from "date-fns";
+import { useAuth } from "../../AuthContext";
+import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
 
 export const EventDetailsOrg = () => {
     const { Id } = useParams();
     const [eventDetails, setEventDetails] = useState({});
     const [imageInfo, setImageInfo] = useState({});
+    const [participants, setParticipants] = useState([]);
+    const [showParticipantsModal, setShowParticipantsModal] = useState(false);
     const auth = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchEventAndImage = async () => {
             try {
-                // Fetch event details
-                const eventResponse = await axios.get(`https://andreea.ligaac.ro/api/Events/GetEvent/${Id}`);
+                const eventResponse = await axios.get(`https://localhost:44317/api/Events/GetEvent/${Id}`);
                 setEventDetails(eventResponse.data);
 
-                // Check if the event has an imageId and fetch image info
                 if (eventResponse.data.imageId) {
-                    const imageResponse = await axios.get(`https://andreea.ligaac.ro/api/content/getObjFile/${eventResponse.data.imageId}`);
-                    // Assuming imageResponse.data contains the relative path
+                    const imageResponse = await axios.get(`https://localhost:44317/api/content/getObjFile/${eventResponse.data.imageId}`);
                     setImageInfo({
                         ...imageResponse.data,
-                        fullPath: `https://andreea.ligaac.ro${imageResponse.data.path}` // Concatenate the base URL with the path
+                        fullPath: `https://localhost:44317${imageResponse.data.path}`
                     });
                 }
             } catch (error) {
@@ -35,18 +32,29 @@ export const EventDetailsOrg = () => {
         };
 
         fetchEventAndImage();
-    }, [Id]); // Effect dependency on Id
+    }, [Id]);
+
+    const fetchParticipants = async () => {
+        try {
+            const response = await axios.get(`https://localhost:44317/api/Events/GetStudents/${Id}`);
+            setParticipants(response.data);
+            setShowParticipantsModal(true);
+        } catch (error) {
+            console.error('Error fetching participants:', error);
+            alert('Failed to fetch participants.');
+        }
+    };
 
     const handleDeleteEvent = async () => {
         try {
-            const response = await axios.delete(`https://andreea.ligaac.ro/api/Events/${Id}`, {
+            const response = await axios.delete(`https://localhost:44317/api/Events/${Id}`, {
                 headers: {
                     Authorization: `Bearer ${auth.user.token}`
                 }
             });
-            if (response.status === 200 || response.status === 204) { // Handle successful response
+            if (response.status === 200 || response.status === 204) {
                 alert('Event deleted successfully.');
-                navigate('/MyEvents'); // Redirect to MyEvents page
+                navigate('/MyEvents');
             } else {
                 alert('Failed to delete the event.');
             }
@@ -59,22 +67,17 @@ export const EventDetailsOrg = () => {
     return (
         <main className="EventDetailMain">
             <Container className="EventDetailContainer">
-                {/* Image at the top */}
                 <Row className="mb-3">
                     <Col xs={12}>
                         <img src={imageInfo.fullPath} alt="Event" style={{ width: '100%', height: '300px', objectFit: 'cover' }} />
                     </Col>
                 </Row>
-
-                {/* Title and Organizer Name */}
                 <Row className="mb-3">
                     <Col xs={12}>
                         <h1>{eventDetails.title}</h1>
-                        <p>Organized by: {eventDetails.orgName}</p> {/* Assuming organizerName is a property */}
+                        <p>Location: {eventDetails.location}</p>
                     </Col>
                 </Row>
-
-                {/* Description and Assign Button */}
                 <Row>
                     <Col md={8}>
                         <Card>
@@ -91,16 +94,35 @@ export const EventDetailsOrg = () => {
                             <Card.Body>
                                 <Card.Title>You can delete this event:</Card.Title>
                                 <Button onClick={handleDeleteEvent} className="btn btn-danger w-100 mb-3">Delete Event</Button>
+                                <Button onClick={fetchParticipants} className="w-100 mb-3">See Participants</Button>
                                 <Card.Text>Price: {eventDetails.price}</Card.Text>
                                 <Card.Text>Date: {eventDetails.date}</Card.Text>
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
+                <Modal show={showParticipantsModal} onHide={() => setShowParticipantsModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Participants</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {participants.length ? participants.map(participant => (
+                            <div key={participant.id}>
+                                <p>First Name: {participant.firstName}</p>
+                                <p>Last Name: {participant.lastName}</p>
+                                <p>Email: {participant.email}</p>
+                            </div>
+                        )) : <p>No participants found.</p>}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowParticipantsModal(false)}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </Container>
         </main>
     );
-
 };
 
 export default EventDetailsOrg;
