@@ -37,7 +37,7 @@ export const Login = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('https://localhost:44317/api/account/login', {
+            const response = await axios.post('https://andreea.ligaac.ro/api/account/login', {
                 UserName,
                 Password
             });
@@ -45,7 +45,7 @@ export const Login = () => {
             auth.login(response.data.token);
 
             // Get the role of the user
-            const roleResponse = await axios.get(`https://localhost:44317/api/account/getRole/${UserName}`);
+            const roleResponse = await axios.get(`https://andreea.ligaac.ro/api/account/getRole/${UserName}`);
 
             setRole(roleResponse.data);
 

@@ -38,7 +38,7 @@ export const StudentRegister = () => {
         }
 
         try {
-            const response = await axios.post('https://localhost:44317/api/account/register/student', {
+            const response = await axios.post('https://andreea.ligaac.ro/api/account/register/student', {
                 Email: formData.Email,
                 Password: formData.Password,
                 FirstName: formData.FirstName,

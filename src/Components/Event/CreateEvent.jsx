@@ -28,7 +28,7 @@ export const CreateEvent = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('https://localhost:44317/api/Categories/GetCategories');
+                const response = await axios.get('https://andreea.ligaac.ro/api/Categories/GetCategories');
                 setCategories(response.data);  // Assuming response data is the array of categories
             } catch (error) {
                 console.error('Failed to fetch categories:', error);
@@ -85,7 +85,7 @@ export const CreateEvent = () => {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
-        const uploadResponse = await axios.post('https://localhost:44317/api/content/uploadFile', formData);
+        const uploadResponse = await axios.post('https://andreea.ligaac.ro/api/content/uploadFile', formData);
         console.log(uploadResponse);
     }
 
@@ -94,7 +94,7 @@ export const CreateEvent = () => {
         event.preventDefault();
 
         try {
-            const eventResponse = await axios.post('https://localhost:44317/api/Events/CreateEvent', {
+            const eventResponse = await axios.post('https://andreea.ligaac.ro/api/Events/CreateEvent', {
                 title,
                 description,
                 location,

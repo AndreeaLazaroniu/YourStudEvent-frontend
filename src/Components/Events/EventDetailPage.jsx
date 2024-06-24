@@ -15,14 +15,14 @@ export const EventDetailPage = () => {
     useEffect(() => {
         const fetchEventAndImage = async () => {
             try {
-                const eventResponse = await axios.get(`https://localhost:44317/api/Events/GetEvent/${Id}`);
+                const eventResponse = await axios.get(`https://andreea.ligaac.ro/api/Events/GetEvent/${Id}`);
                 setEventDetails(eventResponse.data);
 
                 if (eventResponse.data.imageId) {
-                    const imageResponse = await axios.get(`https://localhost:44317/api/content/getObjFile/${eventResponse.data.imageId}`);
+                    const imageResponse = await axios.get(`https://andreea.ligaac.ro/api/content/getObjFile/${eventResponse.data.imageId}`);
                     setImageInfo({
                         ...imageResponse.data,
-                        fullPath: `https://localhost:44317${imageResponse.data.path}`
+                        fullPath: `https://andreea.ligaac.ro${imageResponse.data.path}`
                     });
                 }
             } catch (error) {
@@ -36,7 +36,7 @@ export const EventDetailPage = () => {
     const handleToggleAssignment = async () => {
         if (!isAssigned) {
             try {
-                const response = await axios.post(`https://localhost:44317/api/Events/AddStudent/${Id}`, {}, {
+                const response = await axios.post(`https://andreea.ligaac.ro/api/Events/AddStudent/${Id}`, {}, {
                     headers: {
                         Authorization: `Bearer ${auth.user.token}`,
                     }
@@ -55,7 +55,7 @@ export const EventDetailPage = () => {
         } else {
             // Perform the unassigning API call
             try {
-                const response = await axios.post(`https://localhost:44317/api/Events/RemoveStudent/${Id}`, {}, {
+                const response = await axios.post(`https://andreea.ligaac.ro/api/Events/RemoveStudent/${Id}`, {}, {
                     headers: {
                         Authorization: `Bearer ${auth.user.token}`,
                     }

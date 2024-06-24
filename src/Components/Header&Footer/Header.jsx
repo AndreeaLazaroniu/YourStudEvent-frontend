@@ -23,7 +23,7 @@ export const Header = () => {
             return;
         }
 
-        const roleResponse = await axios.get(`https://localhost:44317/api/account/getRole`, {
+        const roleResponse = await axios.get(`https://andreea.ligaac.ro/api/account/getRole`, {
             headers: {
                 Authorization: `Bearer ${auth.user.token}`
             }

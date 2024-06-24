@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get("https://localhost:44317/api/account/GetOneUser", {
+                    const response = await axios.get("https://andreea.ligaac.ro/api/account/GetOneUser", {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
     const login = async (token) => {
         localStorage.setItem("token", token);
         try {
-            const response = await axios.get("https://localhost:44317/api/account/GetOneUser", {
+            const response = await axios.get("https://andreea.ligaac.ro/api/account/GetOneUser", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

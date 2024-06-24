@@ -19,7 +19,7 @@ export const MyEvents = () => {
         const fetchEventsAndImages = async () => {
             try {
                 // Fetch events
-                const eventResponse = await axios.get('https://localhost:44317/api/Events/GetEventsByOrg', {
+                const eventResponse = await axios.get('https://andreea.ligaac.ro/api/Events/GetEventsByOrg', {
                     headers: {
                         Authorization: `Bearer ${auth.user.token}`
                     }
@@ -29,14 +29,14 @@ export const MyEvents = () => {
                 // Fetch images for each event and combine them with event data
                 const imagePaths = await Promise.all(eventsData.map(async (event) => {
                     try {
-                        const imageResponse = await axios.get(`https://localhost:44317/api/content/getObjFile/${event.imageId}`, {
+                        const imageResponse = await axios.get(`https://andreea.ligaac.ro/api/content/getObjFile/${event.imageId}`, {
                             headers: {
                                 Authorization: `Bearer ${auth.user.token}`
                             }
                         });
                         return {
                             ...event,
-                            imageUrl: `https://localhost:44317${imageResponse.data.path}` // Ensure you have the correct property for the path
+                            imageUrl: `https://andreea.ligaac.ro${imageResponse.data.path}` // Ensure you have the correct property for the path
                         };
                     } catch (error) {
                         console.error(`Failed to fetch image for event ${event.id}:`, error);

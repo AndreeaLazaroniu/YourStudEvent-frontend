@@ -19,7 +19,7 @@ export const MyProfileStud = () => {
 
     const fetchUserProfile = async () => {
         try {
-            const response = await axios.get('https://localhost:44317/api/account/GetOneUser', {
+            const response = await axios.get('https://andreea.ligaac.ro/api/account/GetOneUser', {
                 headers: {
                     Authorization: `Bearer ${auth.user.token}`
                 }
@@ -37,7 +37,7 @@ export const MyProfileStud = () => {
 
     const handleSave = async () => {
         try {
-            const response = await axios.put('https://localhost:44317/api/account/updateAccount', user, {
+            const response = await axios.put('https://andreea.ligaac.ro/api/account/updateAccount', user, {
                 headers: {
                     Authorization: `Bearer ${auth.user.token}`
                 }
@@ -58,7 +58,7 @@ export const MyProfileStud = () => {
 
     const handleDelete = async () => {
         try {
-            const response = await axios.delete('https://localhost:44317/api/account/deleteAccount');
+            const response = await axios.delete('https://andreea.ligaac.ro/api/account/deleteAccount');
             if (response.status === 200) {
                 // Handle user deletion (maybe redirect or clear user state)
             }

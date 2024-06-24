@@ -34,7 +34,7 @@ export const OrganizerRegister = () => {
         }
 
         try {
-            const response = await axios.post('https://localhost:44317/api/account/register/organizer', {
+            const response = await axios.post('https://andreea.ligaac.ro/api/account/register/organizer', {
                 Email: formData.Email,
                 Password: formData.Password,
                 UserName: formData.UserName,
