@@ -16,14 +16,14 @@ export const EventDetailsOrg = () => {
     useEffect(() => {
         const fetchEventAndImage = async () => {
             try {
-                const eventResponse = await axios.get(`https://localhost:44317/api/Events/GetEvent/${Id}`);
+                const eventResponse = await axios.get(`https://andreea.ligaac.ro/api/Events/GetEvent/${Id}`);
                 setEventDetails(eventResponse.data);
 
                 if (eventResponse.data.imageId) {
-                    const imageResponse = await axios.get(`https://localhost:44317/api/content/getObjFile/${eventResponse.data.imageId}`);
+                    const imageResponse = await axios.get(`https://andreea.ligaac.ro/api/content/getObjFile/${eventResponse.data.imageId}`);
                     setImageInfo({
                         ...imageResponse.data,
-                        fullPath: `https://localhost:44317${imageResponse.data.path}`
+                        fullPath: `https://andreea.ligaac.ro${imageResponse.data.path}`
                     });
                 }
             } catch (error) {
@@ -36,7 +36,7 @@ export const EventDetailsOrg = () => {
 
     const fetchParticipants = async () => {
         try {
-            const response = await axios.get(`https://localhost:44317/api/Events/GetStudents/${Id}`);
+            const response = await axios.get(`https://andreea.ligaac.ro/api/Events/GetStudents/${Id}`);
             setParticipants(response.data);
             setShowParticipantsModal(true);
         } catch (error) {
@@ -47,7 +47,7 @@ export const EventDetailsOrg = () => {
 
     const handleDeleteEvent = async () => {
         try {
-            const response = await axios.delete(`https://localhost:44317/api/Events/${Id}`, {
+            const response = await axios.delete(`https://andreea.ligaac.ro/api/Events/${Id}`, {
                 headers: {
                     Authorization: `Bearer ${auth.user.token}`
                 }
